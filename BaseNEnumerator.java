@@ -3,14 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseNEnumerator {
-    /**
-     * baseSize <= 10
-     * @param baseSize
-     * @param numOfDigits
-     * @return
-     */
     public List<List<Integer>> enumerator(int baseSize, int numOfDigits) {
-        assert baseSize <= 10;
         List<List<Integer>> results = new ArrayList<>();
         results.add(new ArrayList<>());
         results.get(0).add(0);
