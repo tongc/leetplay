@@ -2,6 +2,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enumerate all numbers in the given base system. E.g. if base system given is 4 and numberOfDigits is 3
+ * then the enumerations are
+ * 000,001,002,003,010,011,012,013,020,021,022,023,030,031,032,033,etc
+ */
 public class BaseNEnumerator {
     static char[] first = new char[]{'a', 'b', 'c', 'd', 'e', 'f'};
     static char[] second = new char[]{'1', '2', '3', '4', '5', '6'};
