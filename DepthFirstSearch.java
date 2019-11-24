@@ -1,52 +1,69 @@
 public class DepthFirstSearch {
     int counter = 0;
+
     public int countAllNodesBase2(int levels) {
-        if(levels <= 0) return 0;
+        if (levels <= 0) return 0;
         System.out.println("1");
-        int val = countAllNodesBase2(levels-1) + 1;
+        int val = countAllNodesBase2(levels - 1) + 1;
         System.out.println("2");
-        return val + countAllNodesBase2(levels-1) + 1;
+        return val + countAllNodesBase2(levels - 1) + 1;
     }
 
     public int countLeafOnlyBase2(int levels) {
-        if(levels <= 0) return 1;
-        int val = countLeafOnlyBase2(levels-1);
-        return val + countLeafOnlyBase2(levels-1);
+        if (levels <= 0) return 1;
+        int val = countLeafOnlyBase2(levels - 1);
+        return val + countLeafOnlyBase2(levels - 1);
     }
 
     public int countNodeValueSumBase2(int totalValue) {
-        if(totalValue == 0) return 1;
-        if(totalValue < 0) return 0;
-        int val = countNodeValueSumBase2(totalValue-1);
-        return val + countNodeValueSumBase2(totalValue-2);
+        if (totalValue == 0) return 1;
+        if (totalValue < 0) return 0;
+        int val = countNodeValueSumBase2(totalValue - 1);
+        return val + countNodeValueSumBase2(totalValue - 2);
+    }
+
+    public int countJumpsUntilEnd(int[] allowedJumps, int currentIndex) {
+        if (currentIndex >= allowedJumps.length) {
+            StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+            for(int j=0;j<elements.length;j++) {
+                System.out.println(elements[j]);
+            }
+            return 1;
+        }
+        int val = 0;
+        System.out.println("IDX " + currentIndex + " VAL " + allowedJumps[currentIndex]);
+        for (int i = 1; i <= allowedJumps[currentIndex]; i++) {
+            val += countJumpsUntilEnd(allowedJumps, currentIndex + i);
+        }
+        return val;
     }
 
     public int countAllNodesBase10(int levels) {
-        if(levels <= 0) return 0;
-        int val = countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        val += countAllNodesBase10(levels-1) + 1;
-        return val + countAllNodesBase10(levels-1) + 1;
+        if (levels <= 0) return 0;
+        int val = countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        val += countAllNodesBase10(levels - 1) + 1;
+        return val + countAllNodesBase10(levels - 1) + 1;
     }
 
     public int countLeafOnlyBase10(int levels) {
-        if(levels <= 0) return 1;
-        int val = countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        val += countLeafOnlyBase10(levels-1);
-        return val + countLeafOnlyBase10(levels-1);
+        if (levels <= 0) return 1;
+        int val = countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        val += countLeafOnlyBase10(levels - 1);
+        return val + countLeafOnlyBase10(levels - 1);
     }
 
 
@@ -66,5 +83,10 @@ public class DepthFirstSearch {
         System.out.println("final" + new DepthFirstSearch().countLeafOnlyBase2(3));
         System.out.println("final" + new DepthFirstSearch().countLeafOnlyBase10(4));
         System.out.println("final" + new DepthFirstSearch().countNodeValueSumBase2(5));
+        /**
+         * DFS, a tree look roughly like
+         * see jumpUntilEnd.png for tree structure diagram
+         */
+        System.out.println("final" + new DepthFirstSearch().countJumpsUntilEnd(new int[]{1, 2, 3, 1, 1, 1}, 0));
     }
 }
