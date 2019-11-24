@@ -10,8 +10,23 @@ public class DepthFirstSearch {
 //        dfs(levels+1);
     }
 
+    public int dfs2(int levels) {
+        if(levels >= 4) return 0;
+        int val = dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        val += dfs2(levels+1) + 1;
+        return val + dfs2(levels+1) + 1;
+    }
+
     public static void main(String[] args) {
         System.out.println("final" + new DepthFirstSearch().dfs(0));
+        System.out.println("final" + new DepthFirstSearch().dfs2(0));
         /**
          *111
          * 112
