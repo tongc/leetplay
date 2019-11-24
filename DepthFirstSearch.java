@@ -14,6 +14,13 @@ public class DepthFirstSearch {
         return val + countLeafOnlyBase2(levels-1);
     }
 
+    public int countNodeValueSumBase2(int totalValue) {
+        if(totalValue == 0) return 1;
+        if(totalValue < 0) return 0;
+        int val = countNodeValueSumBase2(totalValue-1);
+        return val + countNodeValueSumBase2(totalValue-2);
+    }
+
     public int countAllNodesBase10(int levels) {
         if(levels <= 0) return 0;
         int val = countAllNodesBase10(levels-1) + 1;
@@ -58,5 +65,6 @@ public class DepthFirstSearch {
         System.out.println("final" + new DepthFirstSearch().countAllNodesBase10(4));
         System.out.println("final" + new DepthFirstSearch().countLeafOnlyBase2(3));
         System.out.println("final" + new DepthFirstSearch().countLeafOnlyBase10(4));
+        System.out.println("final" + new DepthFirstSearch().countNodeValueSumBase2(5));
     }
 }
