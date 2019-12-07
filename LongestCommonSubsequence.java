@@ -22,8 +22,7 @@ public class LongestCommonSubsequence {
     public static void main(String[] args) {
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
         List<String> allSubsequences = new ArrayList<>();
-        allSubsequences.add("a");
-        Arrays.stream("bcdef".split("")).forEach(new Consumer<String>() {
+        Arrays.stream("abcdef".split("")).forEach(new Consumer<String>() {
             @Override
             public void accept(String s) {
                 List<String> newList = lcs.allSubsequences(allSubsequences, s.charAt(0));
