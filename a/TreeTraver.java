@@ -11,14 +11,40 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
-public class InorderTraver {
+public class TreeTraver {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList();
-        return t2(root, result);
-        //return t(root, new ArrayList());
+        return tpre(root, result);
     }
 
-    public List<Integer> t2(TreeNode current, List<Integer> result) {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        return tin(root, result);
+    }
+
+    public List<Integer> tin(TreeNode current, List<Integer> result) {
+        Stack<TreeNode> unvisited = new Stack<>();
+        unvisited.push(current);
+        while(unvisited.size()!=0) {
+            current = unvisited.pop();
+
+            TreeNode currentBackup = current;
+            if(currentBackup.right!=null) {
+                unvisited.add(currentBackup.right);
+            }
+            if(currentBackup.left!=null || currentBackup.right!=null) {
+                unvisited.add(new TreeNode(current.val));
+            }
+
+            while(current.left!=null) {
+                current = current.left;
+            }
+            result.add(current.val);
+        }
+        return result;
+    }
+
+    public List<Integer> tpre(TreeNode current, List<Integer> result) {
         Stack<TreeNode> unvisited = new Stack<>();
         unvisited.push(current);
         while(unvisited.size()!=0) {
@@ -62,7 +88,8 @@ public class InorderTraver {
         tn.right = tn5;
         tn5.left = tn6;
         tn5.right = tn7;
-        List<Integer> result = new InorderTraver().preorderTraversal(tn);
+        List<Integer> result = new TreeTraver().preorderTraversal(tn);
         System.out.println(result);
+        System.out.println(new TreeTraver().inorderTraversal(tn));
     }
 }
